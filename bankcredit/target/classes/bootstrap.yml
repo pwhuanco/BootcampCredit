@@ -1,8 +1,11 @@
 spring:
   application:
     name: bankcredit-microservice
-  config:
-    import: configserver:http://localhost:8887
+  cloud:
+    config:
+      uri: http://localhost:8081
+      username: develop
+      password: develop
   profiles:
     active: dev
   mvc:
