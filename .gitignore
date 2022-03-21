@@ -1,0 +1,10 @@
+
+bankcredit/target/classes/com/bootcamp/bankCredit/BankCreditApplication.class
+bankcredit/target/classes/com/bootcamp/bankCredit/config/CreditRouter.class
+bankcredit/target/classes/com/bootcamp/bankCredit/handlers/CreditHandler.class
+bankcredit/target/classes/com/bootcamp/bankCredit/model/dto/Client$ClientBuilder.class
+bankcredit/target/classes/com/bootcamp/bankCredit/model/dto/Client.class
+bankcredit/target/classes/com/bootcamp/bankCredit/model/dto/ClientDTO$ClientDTOBuilder.class
+bankcredit/target/classes/com/bootcamp/bankCredit/model/dto/ClientDTO.class
+bankcredit/target/classes/com/bootcamp/bankCredit/model/dto/ClientType.class
+bankcredit/target/classes/com/bootcamp/bankCredit/model/dto/CreditDTO.class
