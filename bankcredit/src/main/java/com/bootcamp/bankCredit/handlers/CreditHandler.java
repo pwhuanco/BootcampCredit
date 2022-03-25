@@ -38,11 +38,12 @@ public class CreditHandler {
 
     public Mono<ServerResponse> createCredit (final ServerRequest request){
         Mono<Credit> creditMono = request.bodyToMono(Credit.class);
-
+        LOGGER.debug("---->creditMono:"+creditMono);
         return creditMono.flatMap(credit ->{
+            LOGGER.debug("---->credit:"+credit);
             return creditService.getClient(credit.getClientIdNumber())
                     .flatMap(client -> {
-                        LOGGER.info("Client:{} ", client.toString());
+                        LOGGER.info("--->1Client:"+client.toString());
                         credit.setAmount(credit.getCapital()
                                 +credit.getCapital()* credit.getInterestRate()
                                 +credit.getCommission());
@@ -52,15 +53,19 @@ public class CreditHandler {
                                 .clientIdNumber(client.getClientIdNumber())
                                 .build());
                         credit.setAmountInitial(credit.getAmount());
+
+                        LOGGER.debug("---->2creditService:"+creditService);
                         return creditService.validateClientIdNumber(client.getClientIdNumber())
                                 .flatMap(accountFound -> {
                                     if(accountFound.getClientIdNumber() != null
-                                            &&(client.getClientType().getCode().equals("TP-01"))
-                                            || client.getClientType().getCode().equals("TP-03")){
+                                            &&(client.getClientType().getCode().equalsIgnoreCase("TP-01"))
+                                            || client.getClientType().getCode().equalsIgnoreCase("TP-03")){
                                         LOGGER.info("La cuenta encontrada es: "
                                                 +accountFound.getClientIdNumber());
                                         return Mono.empty();
                                     }else{
+
+                                        LOGGER.debug("---->else:"+creditService);
                                         return creditService.create(credit);
                                     }
                                 });
