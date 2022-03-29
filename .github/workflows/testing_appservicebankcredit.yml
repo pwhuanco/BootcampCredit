@@ -22,7 +22,7 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        run: mvn clean install --file bankcredit/pom.xml -DskipTest -Dcheckstyle.skip
+        run: mvn clean install --file bankcredit/pom.xml -DskipTests -Dcheckstyle.skip
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
